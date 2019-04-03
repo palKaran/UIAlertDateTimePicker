@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "UIAlertDateTimePicker"
-  s.version      = "0.0.1"
+  s.version      = "1.0.0"
   s.summary      = "A alert date and time picker"
 
   # This description is used to generate tags and improve search results.
