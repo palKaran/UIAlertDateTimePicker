@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "UIAlertDateTimePicker"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "A alert date and time picker"
 
   # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "UIAlertDateTimePicker is in form of an Alert View which gives you a feel of native alert component with date and time picker in it."
+  s.description  = "UIAlertDateTimePicker is a date and time picker in form of an Alert View. Which gives you a feels of a native alert view in iOS."
 
   s.homepage     = "http://www.appfleek.com/"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
