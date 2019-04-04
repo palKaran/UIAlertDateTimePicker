@@ -27,5 +27,6 @@ Add Protocol to your class ```UIAlertDateTimePickerDelegate```
 The code below will present your UIAlertDateTimePicker on the screen  
 ```datePicker.showAlert()```  
 
+### Note: UIAlertDateTimePicker doesn't supports countDownTimer mode.
 
 ###### Your suggestions are important for me please feel free to put up your suggestions for this project.
