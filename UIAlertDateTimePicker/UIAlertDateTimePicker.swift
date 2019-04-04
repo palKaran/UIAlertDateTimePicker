@@ -23,7 +23,7 @@ public class UIAlertDateTimePicker: NSObject, UIAlertDateTimePickerDelegate, UIT
         self.setup(withPickerMode: pickerMode, pickerTitle: pickerTitle, showPickerOn: view)
     }
     
-    public init(withPickerMode pickerMode: UIDatePicker.Mode, pickerTitle: String?, minDate: Date!, maxDate: Date!, showPickerOn view: UIView) {
+    public init(withPickerMode pickerMode: UIDatePicker.Mode, pickerTitle: String?, minDate: Date?, maxDate: Date?, showPickerOn view: UIView) {
         
         super.init()
         
