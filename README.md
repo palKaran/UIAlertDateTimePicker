@@ -16,11 +16,8 @@ UIAlertDateTimePicker is a date and time picker in form of an Alert View. Which 
 
 # Usage
 You can setup your UIAlertDateTimePicker in the following ways  
-```UIAlertDateTimePicker(withPickerMode: .dateAndTime, pickerTitle: "Select Date & Time", showPickerOn: self.view)```  
-  
-and  
-  
-```UIAlertDateTimePicker(withPickerMode: .dateAndTime, pickerTitle: "Select Date & Time", minDate: minDate, maxDate: maxDate, showPickerOn: self.view)```  
+1. ```UIAlertDateTimePicker(withPickerMode: .dateAndTime, pickerTitle: "Select Date & Time", showPickerOn: self.view)```  
+2. ```UIAlertDateTimePicker(withPickerMode: .dateAndTime, pickerTitle: "Select Date & Time", minDate: minDate, maxDate: maxDate, showPickerOn: self.view)```  
 
 Set delegate to receive callbacks of Alert buttons with dates  
 ```datePicker.delegate = self```  
