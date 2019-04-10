@@ -59,13 +59,21 @@ class UIAlertDateTimePickerView : UIView {
         }
         
         if let maxDate = self.dataStruct.maxDate {
-            self.datePicker.maximumDate = maxDate
-            self.timePicker.maximumDate = maxDate
+            if datePicker != nil {
+                self.datePicker.maximumDate = maxDate
+            }
+            if timePicker != nil {
+                self.timePicker.maximumDate = maxDate
+            }
         }
         
         if let minDate = self.dataStruct.minDate {
-            self.datePicker.minimumDate = minDate
-            self.timePicker.minimumDate = minDate
+            if datePicker != nil {
+                self.datePicker.minimumDate = minDate
+            }
+            if timePicker != nil {
+                self.timePicker.minimumDate = minDate
+            }
         }
         self.configureAlertView()
         
