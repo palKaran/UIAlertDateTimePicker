@@ -82,7 +82,7 @@ public class UIAlertDateTimePicker: NSObject, UIAlertDateTimePickerDelegate, UIT
             self.view?.addSubview(self.backgroundView)
             self.backgroundView.addSubview(self.dateTimePickerView!)
         }
-        UIView.animate(withDuration: 2, delay: 0.1, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseIn, animations: {
             self.backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
             self.dateTimePickerView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: {(finished) in

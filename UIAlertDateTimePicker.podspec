@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "UIAlertDateTimePicker"
-  s.version      = "1.0.3"
+  s.version      = "1.0.5"
   s.summary      = "A alert date and time picker"
 
   # This description is used to generate tags and improve search results.
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/palKaran/UIAlertDateTimePicker.git", :tag => "1.0.3" }
+  s.source       = { :git => "https://github.com/palKaran/UIAlertDateTimePicker.git", :tag => "1.0.5" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

@@ -105,7 +105,8 @@ class UIAlertDateTimePickerView : UIView {
     
     func configureAlertView() {
         
-        backButton = UIButton(frame: CGRect(x: 12, y: 10, width: 30, height: 30))
+        backButton = UIButton(frame: CGRect(x: 8, y: 5, width: 30, height: 30))
+        backButton.contentEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         backButton.setImage(getBackImage(), for: .normal)
         backButton.isHidden = true;
         backButton.addTarget(self, action: #selector(self.backButtonClicked), for: .touchUpInside)
