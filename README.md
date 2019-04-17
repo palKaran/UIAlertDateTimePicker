@@ -2,8 +2,8 @@
 UIAlertDateTimePicker is a date and time picker in form of an Alert View. Which gives you a feels of a native alert view in iOS.
 
 
-![screenshots](https://user-images.githubusercontent.com/27779489/55546902-d1e20800-56ed-11e9-89ba-aa61147145ab.png)
-![screenshots](https://user-images.githubusercontent.com/27779489/55546903-d1e20800-56ed-11e9-88c3-741f7bbd065b.png)
+![screenshots](https://user-images.githubusercontent.com/27779489/56321097-52d7df80-6183-11e9-9042-33c4c3af88b6.png)
+![screenshots](https://user-images.githubusercontent.com/27779489/56321098-52d7df80-6183-11e9-99ef-12834ed1af6e.png)
 
 ###### UIAlertDateTimePicker works on iOS 10+  
 
