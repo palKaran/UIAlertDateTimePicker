@@ -13,11 +13,15 @@ class UIAlertDateTimePickerView : UIView {
     var datePicker : UIDatePicker!
     var timePicker : UIDatePicker!
     var dataStruct : UIAlertDataStruct
-    var frameHeight : CGFloat = 280;
-    var pickerHeight : CGFloat = 180
+    var alertViewWidth : CGFloat = 280
+    var frameHeight : CGFloat = 230;
+    var pickerHeight : CGFloat = 130
+    var titleHeight : CGFloat = 40
+    var buttonHeight : CGFloat = 46
     var positiveButton : UIButton!
     var negativeButton : UIButton!
     var backButton : UIButton!
+    let layerColor = #colorLiteral(red: 0.8990570903, green: 0.8990781903, blue: 0.8990668654, alpha: 1)
     
     var delegate : UIAlertDateTimePickerDelegate?
     
@@ -28,7 +32,9 @@ class UIAlertDateTimePickerView : UIView {
     init(withframe frame: CGRect, data: UIAlertDataStruct) {
         self.dataStruct = data
         var frame = frame;
-        frame.size.width = frame.size.width - 60;
+        let padding = (frame.size.width - alertViewWidth)/2
+        frame.origin.x = padding
+        frame.size.width = alertViewWidth;
         frame.size.height = frameHeight;
         super.init(frame: frame)
         
@@ -37,8 +43,11 @@ class UIAlertDateTimePickerView : UIView {
     
     func configureView() {
         
-        let defaultFrame = CGRect(origin: CGPoint(x: 0, y: 50), size: CGSize(width: self.frame.size.width, height: pickerHeight))
-        let outerFrame = CGRect(origin: CGPoint(x: self.frame.size.width, y: 50), size: CGSize(width: self.frame.size.width, height: pickerHeight))
+        
+        self.configureAlertView()
+        
+        let defaultFrame = CGRect(origin: CGPoint(x: 0, y: titleHeight), size: CGSize(width: self.frame.size.width, height: pickerHeight))
+        let outerFrame = CGRect(origin: CGPoint(x: self.frame.size.width, y: titleHeight), size: CGSize(width: self.frame.size.width, height: pickerHeight))
         switch self.dataStruct.datePickerMode {
         case .date?:
             self.configurePicker(picker: self.datePicker, withFrame: defaultFrame)
@@ -58,6 +67,23 @@ class UIAlertDateTimePickerView : UIView {
             break
         }
         
+        
+    }
+    
+    func configurePicker(picker : UIDatePicker?, withFrame frame : CGRect) {
+        
+        if picker == self.datePicker {
+            self.datePicker = UIDatePicker(frame: frame)
+            self.datePicker.datePickerMode = .date
+            self.addSubview(self.datePicker)
+        }else {
+            self.timePicker = UIDatePicker(frame: frame)
+            self.timePicker.datePickerMode = .time
+            self.addSubview(self.timePicker)
+        }
+        
+        self.layer.addSublayer(self.getLayer(forFrame: CGRect(x: 0, y: frameHeight - buttonHeight + 1, width: self.frame.width, height: 1), withColor: layerColor))
+        
         if let maxDate = self.dataStruct.maxDate {
             if datePicker != nil {
                 self.datePicker.maximumDate = maxDate
@@ -75,21 +101,6 @@ class UIAlertDateTimePickerView : UIView {
                 self.timePicker.minimumDate = minDate
             }
         }
-        self.configureAlertView()
-        
-    }
-    
-    func configurePicker(picker : UIDatePicker?, withFrame frame : CGRect) {
-        
-        if picker == self.datePicker {
-            self.datePicker = UIDatePicker(frame: frame)
-            self.datePicker.datePickerMode = .date
-            self.addSubview(self.datePicker)
-        }else {
-            self.timePicker = UIDatePicker(frame: frame)
-            self.timePicker.datePickerMode = .time
-            self.addSubview(self.timePicker)
-        }
     }
     
     func configureAlertView() {
@@ -104,23 +115,23 @@ class UIAlertDateTimePickerView : UIView {
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = true
         
-        let layerColor = #colorLiteral(red: 0.8990570903, green: 0.8990781903, blue: 0.8990668654, alpha: 1)
         
+        let font = UIFont.boldSystemFont(ofSize: 17)
         var labelFinalHeight =
-            self.dataStruct.pickerTitle.height(withConstrainedWidth: self.frame.width - 100, font: UIFont.systemFont(ofSize: 18))
-        labelFinalHeight = labelFinalHeight < 50 ? 50 : labelFinalHeight
+            self.dataStruct.pickerTitle.height(withConstrainedWidth: self.frame.width - 100, font: font)
+        labelFinalHeight = labelFinalHeight < titleHeight ? titleHeight : labelFinalHeight
         
-        let label = UILabel(frame: CGRect(x: 50, y: 0, width: self.frame.width - 100, height: labelFinalHeight))
-        label.font = UIFont.systemFont(ofSize: 18)
+        let label = UILabel(frame: CGRect(x: titleHeight, y: 0, width: self.frame.width - 100, height: labelFinalHeight))
+        label.font = font
         label.text = self.dataStruct.pickerTitle
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.layer.addSublayer(self.getLayer(forFrame: CGRect(x: -50, y: labelFinalHeight - 1, width: self.frame.width, height: 1), withColor: layerColor))
+//        label.layer.addSublayer(self.getLayer(forFrame: CGRect(x: -50, y: labelFinalHeight - 1, width: self.frame.width, height: 1), withColor: layerColor))
         
         self.addSubview(label)
         
-        if labelFinalHeight > 50 {
-            self.pickerHeight = self.frame.height - (labelFinalHeight + 50)
+        if labelFinalHeight > titleHeight {
+            self.titleHeight = labelFinalHeight
             if self.dataStruct.datePickerMode == .dateAndTime {
                 let frame = self.timePicker.frame
                 self.timePicker.frame = CGRect(x: frame.origin.x, y: labelFinalHeight, width: frame.size.width, height: self.pickerHeight)
@@ -130,11 +141,12 @@ class UIAlertDateTimePickerView : UIView {
             self.datePicker.frame = CGRect(x: frame.origin.x, y: labelFinalHeight, width: frame.size.width, height: self.pickerHeight)
         }
         
-        self.layer.addSublayer(self.getLayer(forFrame: CGRect(x: 0, y: frameHeight - 51, width: self.frame.width, height: 50), withColor: layerColor))
+        self.pickerHeight = self.frame.height - (titleHeight + buttonHeight)
+        
         
         let buttonWidth = (self.frame.width/2) - 0.5
         
-        negativeButton = UIButton(frame: CGRect(x: 0, y: frameHeight - 50, width: buttonWidth, height: 50))
+        negativeButton = UIButton(frame: CGRect(x: 0, y: frameHeight - buttonHeight, width: buttonWidth, height: buttonHeight))
         negativeButton.setTitleColor(.red, for: .normal)
         negativeButton.backgroundColor = .white;
         negativeButton.setTitle("Cancel", for: .normal)
@@ -142,7 +154,7 @@ class UIAlertDateTimePickerView : UIView {
         self.addSubview(negativeButton)
         
         
-        positiveButton = UIButton(frame: CGRect(x: buttonWidth, y: frameHeight - 50, width: buttonWidth, height: 50))
+        positiveButton = UIButton(frame: CGRect(x: buttonWidth, y: frameHeight - buttonHeight, width: buttonWidth, height: buttonHeight))
         positiveButton.setTitleColor(#colorLiteral(red: 0.1960784314, green: 0.4823529412, blue: 0.9647058824, alpha: 1), for: .normal)
         positiveButton.backgroundColor = .white
         if self.dataStruct.datePickerMode == .dateAndTime {
@@ -153,7 +165,7 @@ class UIAlertDateTimePickerView : UIView {
         positiveButton.addTarget(self, action: #selector(self.positiveButtonClicked(button:)), for: .touchUpInside)
         self.addSubview(positiveButton)
         
-        self.layer.addSublayer(self.getLayer(forFrame: CGRect(x: buttonWidth, y: frameHeight - 51, width: 1, height: 50), withColor: layerColor))
+        self.layer.addSublayer(self.getLayer(forFrame: CGRect(x: buttonWidth, y: frameHeight - buttonHeight + 1, width: 1, height: buttonHeight), withColor: layerColor))
         
     }
     

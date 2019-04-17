@@ -68,7 +68,7 @@ public class UIAlertDateTimePicker: NSObject, UIAlertDateTimePickerDelegate, UIT
         
         self.dateTimePickerView = UIAlertDateTimePickerView(withframe: backgroundView.bounds, data: self.dataStruct)
         self.dateTimePickerView.center = self.backgroundView.center
-        self.dateTimePickerView.transform = CGAffineTransform(scaleX: 0, y: 0)
+        self.dateTimePickerView.transform = CGAffineTransform(scaleX: 0.00001, y: 0.00001)
         
     }
     
@@ -82,7 +82,7 @@ public class UIAlertDateTimePicker: NSObject, UIAlertDateTimePickerDelegate, UIT
             self.view?.addSubview(self.backgroundView)
             self.backgroundView.addSubview(self.dateTimePickerView!)
         }
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 2, delay: 0.1, options: .curveEaseIn, animations: {
             self.backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
             self.dateTimePickerView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: {(finished) in
@@ -102,7 +102,7 @@ public class UIAlertDateTimePicker: NSObject, UIAlertDateTimePickerDelegate, UIT
     
     func dismissSelf() {
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0)
             self.dateTimePickerView?.transform = CGAffineTransform(scaleX: 0.00001, y: 0.00001)
         }, completion:{ (finished) in
